@@ -103,6 +103,30 @@ fc.connect(n4, n2, style="dashed")  # 虚线回环
 | **VSDX** | Visio | Visio + pywin32 | Visio 用户 |
 | **PPTX** | PowerPoint | python-pptx | 演示文稿 |
 
+## 📁 项目结构
+
+```
+visio-scientific-flowchart/
+├── SKILL.md                          # Skill 定义
+├── README.md                         # 英文文档
+├── README.zh.md                      # 中文文档
+├── LICENSE                           # MIT + AI 声明
+├── requirements.txt                  # Python 依赖
+├── .gitignore
+├── templates/
+│   ├── __init__.py
+│   ├── svg_flowchart.py              # SVG 生成器（主模块，无依赖）
+│   ├── visio_com.py                  # Visio COM 自动化
+│   └── pptx_flowchart.py             # PowerPoint 生成器
+└── 示例_深度学习流程.svg              # 示例 SVG 输出
+```
+
+## 安装为 Hermes Agent Skill
+
+```bash
+git clone https://github.com/Dynamic-braking9/visio-scientific-flowchart.git     ~/.hermes/skills/creative/visio-scientific-flowchart
+```
+
 ## 许可证
 
 MIT — 见 [LICENSE](LICENSE)
