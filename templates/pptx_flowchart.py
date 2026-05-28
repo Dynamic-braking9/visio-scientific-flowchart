@@ -208,8 +208,8 @@ class PptxFlowchart:
         # 添加连接线（带箭头）
         connector = self.slide.shapes.add_connector(
             1,  # straight connector
-            src.left + src.width // 2, src.top + src.height,
-            dst.left + dst.width // 2, dst.top
+            int(src.left + src.width / 2), int(src.top + src.height),
+            int(dst.left + dst.width / 2), int(dst.top)
         )
         connector.line.color.rgb = ARROW_COLOR
         connector.line.width = Pt(1.5)
@@ -219,8 +219,8 @@ class PptxFlowchart:
 
         if label:
             # 添加标签文本框
-            lx = (src.left + dst.left) // 2 + Inches(0.3)
-            ly = (src.top + src.height + dst.top) // 2
+            lx = int((src.left + dst.left) / 2) + Inches(0.3)
+            ly = int((src.top + src.height + dst.top) / 2)
             tb = self.slide.shapes.add_textbox(lx, ly, Inches(0.6), Inches(0.3))
             tf = tb.text_frame
             tf.paragraphs[0].text = label
