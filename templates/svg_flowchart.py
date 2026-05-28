@@ -12,9 +12,8 @@
     fc.save()
 """
 
-import math
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Optional, List, Dict, Tuple
 from xml.sax.saxutils import escape
 
 
@@ -69,7 +68,7 @@ class FlowchartBuilder:
                  node_width: float = 200, node_height: float = 60,
                  h_gap: float = 60, v_gap: float = 80,
                  font_size: float = 14, title_font_size: float = 20,
-                 layout: str = "auto", lanes: list = None):
+                 layout: str = "auto"):
         self.filepath = filepath
         self.title = title
         self.direction = direction    # vertical | horizontal
@@ -79,13 +78,12 @@ class FlowchartBuilder:
         self.v_gap = v_gap
         self.font_size = font_size
         self.title_fs = title_font_size
-        self.layout_type = layout     # auto | swimlane
-        self.lanes = lanes or []
+        self.layout_type = layout     # auto (swimlane: TODO)
 
-        self.nodes: list[Node] = []
-        self.edges: list[Edge] = []
+        self.nodes: List[Node] = []
+        self.edges: List[Edge] = []
         self._id_counter = 0
-        self._node_map: dict[str, Node] = {}
+        self._node_map: Dict[str, Node] = {}
 
     # ── ID 生成 ──────────────────────────────
 
@@ -293,6 +291,11 @@ class FlowchartBuilder:
 
         # 连线标签
         if edge.label:
+            label = edge.label
+            # 估算标签宽度：中文字符约 14px，英文约 8px
+            char_w = 14 if any('\u4e00' <= c <= '\u9fff' for c in label) else 8
+            label_w = max(len(label) * char_w + 12, 30)
+            label_h = 18
             mx = (sx + ex) / 2
             my = (sy + ey) / 2
             # 偏移标签避免与线重叠
@@ -300,7 +303,7 @@ class FlowchartBuilder:
                 mx += 12
             else:
                 my -= 8
-            parts.append(f'<rect x="{mx - 18}" y="{my - 12}" width="36" height="18" '
+            parts.append(f'<rect x="{mx - label_w/2}" y="{my - 12}" width="{label_w}" height="{label_h}" '
                          f'rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>')
             parts.append(f'<text x="{mx}" y="{my + 2}" text-anchor="middle" '
                          f'font-family="{FONT_FAMILY}" font-size="11" '
@@ -345,22 +348,57 @@ class FlowchartBuilder:
                 else:
                     return cx, node_from.y  # top
 
-    def _edge_path(self, sx, sy, ex, ey, src_node, dst_node) -> str:
-        """生成连线路径，带中间拐点"""
+    def _is_loopback(self, src_node: Node, dst_node: Node) -> bool:
+        """判断是否为回环连线（目标在源的上游）"""
         if self.direction == "vertical":
-            # 垂直布局：先垂直后水平再垂直
-            mid_y = (sy + ey) / 2
-            if abs(sx - ex) < 5:
-                # 同列直连
-                return f"M{sx},{sy} L{ex},{ey}"
-            else:
-                return f"M{sx},{sy} L{sx},{mid_y} L{ex},{mid_y} L{ex},{ey}"
+            return dst_node.y < src_node.y
         else:
-            mid_x = (sx + ex) / 2
-            if abs(sy - ey) < 5:
-                return f"M{sx},{sy} L{ex},{ey}"
+            return dst_node.x < src_node.x
+
+    def _edge_path(self, sx, sy, ex, ey, src_node, dst_node) -> str:
+        """生成连线路径，带中间拐点。回环连线绕行中间节点。"""
+        is_loop = self._is_loopback(src_node, dst_node)
+
+        if self.direction == "vertical":
+            if is_loop:
+                # 回环：从源右侧出发 → 右偏移 → 向上 → 到目标左侧 → 进入
+                offset = max(src_node.w, dst_node.w) / 2 + 40
+                rx = max(src_node.x + src_node.w, dst_node.x + dst_node.w) + offset
+                # 起点：源节点右侧中点
+                loop_sx = src_node.x + src_node.w
+                loop_sy = src_node.y + src_node.h / 2
+                # 终点：目标节点右侧中点
+                loop_ex = dst_node.x + dst_node.w
+                loop_ey = dst_node.y + dst_node.h / 2
+                return (f"M{loop_sx},{loop_sy} "
+                        f"L{rx},{loop_sy} "
+                        f"L{rx},{loop_ey} "
+                        f"L{loop_ex},{loop_ey}")
             else:
-                return f"M{sx},{sy} L{mid_x},{sy} L{mid_x},{ey} L{ex},{ey}"
+                mid_y = (sy + ey) / 2
+                if abs(sx - ex) < 5:
+                    return f"M{sx},{sy} L{ex},{ey}"
+                else:
+                    return f"M{sx},{sy} L{sx},{mid_y} L{ex},{mid_y} L{ex},{ey}"
+        else:
+            if is_loop:
+                # 水平布局回环：从源下方出发 → 下偏移 → 向左 → 到目标上方
+                offset = max(src_node.h, dst_node.h) / 2 + 40
+                ry = max(src_node.y + src_node.h, dst_node.y + dst_node.h) + offset
+                loop_sy = src_node.y + src_node.h
+                loop_sx = src_node.x + src_node.w / 2
+                loop_ey = dst_node.y + dst_node.h
+                loop_ex = dst_node.x + dst_node.w / 2
+                return (f"M{loop_sx},{loop_sy} "
+                        f"L{loop_sx},{ry} "
+                        f"L{loop_ex},{ry} "
+                        f"L{loop_ex},{loop_ey}")
+            else:
+                mid_x = (sx + ex) / 2
+                if abs(sy - ey) < 5:
+                    return f"M{sx},{sy} L{ex},{ey}"
+                else:
+                    return f"M{sx},{sy} L{mid_x},{sy} L{mid_x},{ey} L{ex},{ey}"
 
     # ── 生成完整 SVG ──────────────────────────
 
