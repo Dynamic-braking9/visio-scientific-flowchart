@@ -12,22 +12,22 @@
   <path d="M400.0,390 L400.0,470" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
   <path d="M400.0,530 L400.0,610" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
   <path d="M400.0,710 L400.0,790" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
-  <rect x="394.0" y="738.0" width="36" height="18" rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>
+  <rect x="397.0" y="738.0" width="30" height="18" rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>
   <text x="412.0" y="752.0" text-anchor="middle" font-family="'Microsoft YaHei', 'SimSun', 'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#6B7280">是</text>
-  <path d="M400.0,610 L400.0,390" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arrowhead)"/>
-  <rect x="394.0" y="488.0" width="36" height="18" rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>
+  <path d="M480.0,660.0 L640.0,660.0 L640.0,360.0 L500.0,360.0" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arrowhead)"/>
+  <rect x="397.0" y="488.0" width="30" height="18" rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>
   <text x="412.0" y="502.0" text-anchor="middle" font-family="'Microsoft YaHei', 'SimSun', 'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#6B7280">否</text>
   <path d="M400.0,850 L400.0,930" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
   <path d="M400.0,990 L400.0,1070" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
   <path d="M400.0,1170 L400.0,1250" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
-  <rect x="394.0" y="1198.0" width="36" height="18" rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>
+  <rect x="397.0" y="1198.0" width="30" height="18" rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>
   <text x="412.0" y="1212.0" text-anchor="middle" font-family="'Microsoft YaHei', 'SimSun', 'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#6B7280">否</text>
   <path d="M400.0,1170 L400.0,1530" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
-  <rect x="394.0" y="1338.0" width="36" height="18" rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>
+  <rect x="397.0" y="1338.0" width="30" height="18" rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>
   <text x="412.0" y="1352.0" text-anchor="middle" font-family="'Microsoft YaHei', 'SimSun', 'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#6B7280">是</text>
   <path d="M400.0,1310 L400.0,1390" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
-  <path d="M400.0,1390 L400.0,990" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arrowhead)"/>
-  <rect x="394.0" y="1178.0" width="36" height="18" rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>
+  <path d="M500.0,1420.0 L640.0,1420.0 L640.0,960.0 L500.0,960.0" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arrowhead)"/>
+  <rect x="392.0" y="1178.0" width="40" height="18" rx="3" fill="white" stroke="#D1D5DB" stroke-width="0.5"/>
   <text x="412.0" y="1192.0" text-anchor="middle" font-family="'Microsoft YaHei', 'SimSun', 'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#6B7280">调整</text>
   <path d="M400.0,1590 L400.0,1670" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
   <rect x="330.0" y="60" width="140" height="50" rx="25.0" ry="25.0" fill="#F3F4F6" stroke="#6B7280" stroke-width="2"/>
