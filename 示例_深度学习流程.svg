@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="580.0" height="1830" viewBox="0 0 580.0 1830">
+<svg xmlns="http://www.w3.org/2000/svg" width="580" height="1830" viewBox="0 0 580 1830">
   <defs>
     <marker id="arrowhead" markerWidth="10" markerHeight="7"
             refX="9" refY="3.5" orient="auto" fill="#6B7280">
       <polygon points="0 0, 10 3.5, 0 7"/>
     </marker>
   </defs>
-  <rect width="580.0" height="1830" fill="white"/>
+  <rect width="580" height="1830" fill="white"/>
   <text x="290.0" y="35" text-anchor="middle" font-family="'Microsoft YaHei', 'SimSun', 'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="20" font-weight="bold" fill="#111827">基于深度学习的图像分类研究流程</text>
   <path d="M400.0,110 L400.0,190" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
   <path d="M400.0,250 L400.0,330" fill="none" stroke="#6B7280" stroke-width="1.8" marker-end="url(#arrowhead)"/>
