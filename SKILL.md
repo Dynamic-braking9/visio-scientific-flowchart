@@ -160,9 +160,8 @@ vf.save()
 | 输入/输出 (I/O) | 平行四边形 | `io_input()` / `io_output()` | 数据输入输出 |
 | 起止 (Terminal) | 圆角矩形/椭圆 | `start()` / `end()` | 流程开始和结束 |
 | 子流程 (Subprocess) | 双边框矩形 | `subprocess()` | 调用子程序/子流程 |
-| 注释 (Annotation) | 折角矩形 | `annotation()` | 补充说明 |
-| 预定义处理 | 双边框矩形 | `predefined()` | 已定义的处理过程 |
-| 数据库 (Database) | 圆柱体 | `database()` | 数据存储 |
+|| 注释 (Annotation) | 折角矩形 | `annotation()` | 补充说明 |
+|| 数据库 (Database) | 圆柱体 | `database()` | 数据存储 |
 
 ## 布局方向
 
@@ -173,9 +172,9 @@ fc = FlowchartBuilder("flow.svg", direction="vertical")
 # 自左而右（适合宽屏展示或横向排版）
 fc = FlowchartBuilder("flow.svg", direction="horizontal")
 
-# 泳道图（按模块/角色分列）
-fc = FlowchartBuilder("flow.svg", layout="swimlane",
-                      lanes=["数据层", "模型层", "评估层"])
+# 泳道图（规划中，暂未实现）
+# fc = FlowchartBuilder("flow.svg", layout="swimlane",
+#                       lanes=["数据层", "模型层", "评估层"])
 ```
 
 ## 节点尺寸与间距
@@ -186,9 +185,9 @@ fc = FlowchartBuilder("flow.svg", layout="swimlane",
 | 节点高度 | 60px | 可通过 `node_height` 参数调整 |
 | 水平间距 | 60px | 节点之间的水平间距 |
 | 垂直间距 | 80px | 节点之间的垂直间距 |
-| 判断节点 | 120×80px | 菱形比一般节点大 |
+|| 判断节点 | 160×100px | 菱形比一般节点大 |
 | 字号 | 14px | 节点内文字大小 |
-| 标题字号 | 18px | 流程图标题 |
+|| 标题字号 | 20px | 流程图标题 |
 
 ## 数学公式标签
 
