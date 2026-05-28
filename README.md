@@ -111,7 +111,10 @@ visio-scientific-flowchart/
 ├── README.md                         # English docs
 ├── README.zh.md                      # Chinese docs
 ├── LICENSE                           # MIT + AI declaration
+├── requirements.txt                  # Python dependencies
+├── .gitignore
 ├── templates/
+│   ├── __init__.py
 │   ├── svg_flowchart.py              # SVG generator (main, no deps)
 │   ├── visio_com.py                  # Visio COM automation
 │   └── pptx_flowchart.py             # PowerPoint generator
