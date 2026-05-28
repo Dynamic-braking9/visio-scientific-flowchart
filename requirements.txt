@@ -1,0 +1,8 @@
+# 科研流程图生成器依赖
+# SVG 输出：无额外依赖（纯 Python 标准库）
+
+# PPTX 输出
+python-pptx>=0.6.21
+
+# VSDX 输出（仅 Windows + Visio）
+pywin32>=306; sys_platform == "win32"
