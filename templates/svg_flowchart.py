@@ -408,7 +408,7 @@ class FlowchartBuilder:
             return 800, 600
         max_x = max(n.x + n.w for n in self.nodes) + 80
         max_y = max(n.y + n.h for n in self.nodes) + 80
-        return max(max_x, 400), max(max_y, 300)
+        return int(max(max_x, 400)), int(max(max_y, 300))
 
     def _draw_legend(self, canvas_w: float) -> str:
         """绘制图例（颜色-阶段对照）"""
