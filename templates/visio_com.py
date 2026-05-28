@@ -102,8 +102,8 @@ class VisioFlowchart:
             self.doc = self.visio.Documents.Add("")
 
         self.page = self.visio.ActivePage
-        self.page.PageSheet.CellsU("PageWidth").FormulaU = f"{self.page_width} in"
-        self.page.PageSheet.CellsU("PageHeight").FormulaU = f"{self.page_height} in"
+        self.page.PageSheet.CellsU("PageWidth").FormulaU = f"{self.page_w} in"
+        self.page.PageSheet.CellsU("PageHeight").FormulaU = f"{self.page_h} in"
 
         # 尝试打开流程图模具
         try:
@@ -244,21 +244,29 @@ class VisioFlowchart:
         for i in range(len(self.shapes) - 1):
             self.connect_shapes(i, i + 1)
 
+    def add_annotation(self, text: str) -> object:
+        """添加注释节点"""
+        return self._add_shape(text, "annotation", w=2.0, h=0.35)
+
     def save(self):
         """保存 Visio 文件"""
         self._init_visio()
 
         # 保存为 .vsdx 格式
-        # visSaveAsWeb = 18, visSaveAsDefault = 0
         save_path = self.filepath
         if not save_path.endswith('.vsdx'):
             save_path += '.vsdx'
 
-        self.doc.SaveAs(save_path)
-        self.visio.Quit()
-        pythoncom.CoUninitialize()
-        print(f"✅ Visio 文件已生成: {save_path}")
-        self._initialized = False
+        try:
+            self.doc.SaveAs(save_path)
+            print(f"✅ Visio 文件已生成: {save_path}")
+        finally:
+            try:
+                self.visio.Quit()
+            except Exception:
+                pass
+            pythoncom.CoUninitialize()
+            self._initialized = False
 
 
 # ── 演示 ─────────────────────────────────────────
